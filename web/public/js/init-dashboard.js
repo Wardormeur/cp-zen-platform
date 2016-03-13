@@ -120,6 +120,63 @@
           },
           controller: 'dojos-map-controller'
         })
+        .state("my-dojos", {
+          url: "/dashboard/my-dojos",
+          templateUrl: '/dojos/template/my-dojos',
+          controller: 'my-dojos-controller',
+          params: {
+            pageTitle: 'My Dojos'
+          },
+          ncyBreadcrumb: {
+            label: '{{myDojosPageTitle}}'
+          }
+        })
+        .state("edit-dojo", {
+          url: "/dashboard/edit-dojo/:id",
+          templateUrl: '/dojos/template/edit-dojo',
+          resolve: {
+            gmap: gmap,
+            currentUser: resolves.loggedInUser
+          },
+          params: {
+            pageTitle: 'Edit Dojo'
+          },
+          controller: 'edit-dojo-controller'
+        })
+        .state("dojo-detail", {
+          url: "/dashboard/dojo/{country:[a-zA-Z]{2}}/{path:nonURIEncoded}",
+          templateUrl: '/dojos/template/dojo-detail',
+          resolve: {
+            dojo: resolveDojo,
+            gmap: gmap,
+            currentUser: resolves.loggedInUser
+          },
+          params: {
+            pageTitle: 'Dojo'
+          },
+          controller: 'dojo-detail-controller'
+        })
+        .state("dojo-detail-alt", {
+          url: "/dashboard/dojo/:legacyId",
+          templateUrl: '/dojos/template/dojo-detail',
+          resolve: {
+            dojo: resolveDojo,
+            gmap: gmap,
+            currentUser: resolves.loggedInUser
+          },
+          params: {
+            pageTitle: 'My Dojos'
+          },
+          controller: 'dojo-detail-controller'
+        })
+        .state("manage-dojos", {
+          url: "/dashboard/manage-dojos",
+          templateUrl: '/dojos/template/manage-dojos',
+          params: {
+            pageTitle: 'Manage Dojos'
+          },
+          controller: 'manage-dojo-controller'
+        })
         .state("dojo-list", {
           url: "/dashboard/dojo-list",
           templateUrl: '/dojos/template/dojos-map',

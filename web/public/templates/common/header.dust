@@ -10,9 +10,10 @@
     <div ng-controller="header" class="navbar navbar-default navbar-main">
       {>"common/content-header" /}
     </div>
-    <div class="text-center col-xs-12"></div>
+    <div class="text-center col-xs-12">
+      <div class="alert alert-danger"><strong>Limited functionality:</strong> Zen is currently undergoing maintenance and there is limited functionality. You will not be able to sign up for a Dojo or see events.</div>
+    </div>
   </div>
   <alert-banner></alert-banner>
   <ng-atomic-notify></ng-atomic-notify>
 </header>
-

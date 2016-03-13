@@ -162,6 +162,15 @@
             pageTitle: 'Login'
           }
         })
+        .state("register-account", {
+          url: "/register",
+          templateUrl: '/dojos/template/start-dojo-wizard/step-one-register',
+          params: {
+            referer:null,
+            pageTitle: 'Register'
+          },
+          controller: 'login'
+        })
         .state("dojo-list-index", {
           url: "/dojo-list-index",
           templateUrl: '/dojos/template/dojo-list-index',

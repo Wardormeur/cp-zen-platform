@@ -4,15 +4,22 @@
       <a ng-click="goTo('dojo-list')"><span ng-class="{'cd-active-tab': isSelected('dojo-list')}"
                               class="cd-header-button cd-color-1">
         {@i18n key="Find a Dojo"/}</span></a>
+      <a ng-click="goTo('my-dojos')"><span ng-class="{'cd-active-tab': isSelected('my-dojos')}"
+                                         class="cd-header-button cd-color-2">
+      {@i18n key="My Dojos"/}</span></a>
       <a><span ng-click="adultForums()" class="cd-header-button cd-color-4">
         {@i18n key="Forum"/}</span></a>
+
       <a target="_blank" href="http://kata.coderdojo.com/wiki/Main_Page"><span class="cd-header-button cd-color-6">{@i18n key="Resources"/}</span></a>
     </span>
     <span id="cd-mainnav-collapse" class="cd-header-menu-inner navbar-collapse collapse" ng-if="!user">
       <a ng-click="goTo('home')" ><span ng-class="{'cd-active-tab': isSelected('dojo-list')}"
                               class="cd-header-button cd-color-1">
         {@i18n key="Find a Dojo"/}</span></a>
-      <a><span ng-click="adultForums()" class="cd-header-button cd-color-4">
+        <a ng-click="goTo('login')" ><span ng-class="{'cd-active-tab': isSelected('login')}"
+          class="cd-header-button cd-color-2">
+          {@i18n key="Login"/}</span></a>
+        <a><span ng-click="adultForums()" class="cd-header-button cd-color-4">
         {@i18n key="Forum"/}</span></a>
       <a target="_blank" href="http://kata.coderdojo.com/wiki/Main_Page"><span class="cd-header-button cd-color-6">{@i18n key="Resources"/}</span></a>
     </span>
