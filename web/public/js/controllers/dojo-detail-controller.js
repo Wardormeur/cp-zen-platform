@@ -1,7 +1,10 @@
 'use strict';
 /* global google */
 
-function cdDojoDetailCtrl($scope, $state, $location, cdDojoService, cdUsersService, alertService, usSpinnerService, auth, dojo, gmap, $translate, currentUser) {
+function cdDojoDetailCtrl($scope, $state, $location, cdDojoService, cdUsersService, alertService, usSpinnerService, auth, dojo, gmap, $translate, currentUser, dojoUtils) {
+
+  localStorage.setItem('dojoId', dojo.id);
+
   $scope.dojo = dojo;
   $scope.model = {};
   $scope.markers = [];
@@ -156,9 +159,7 @@ function cdDojoDetailCtrl($scope, $state, $location, cdDojoService, cdUsersServi
       alertService.showError($translate.instant('Error leaving Dojo'));
     });
   }
-
 }
 
 angular.module('cpZenPlatform')
-  .controller('dojo-detail-controller', ['$scope', '$state', '$location', 'cdDojoService', 'cdUsersService', 'alertService', 'usSpinnerService', 'auth', 'dojo', 'gmap', '$translate', 'currentUser', cdDojoDetailCtrl]);
-
+  .controller('dojo-detail-controller', ['$scope', '$state', '$location', 'cdDojoService', 'cdUsersService', 'alertService', 'usSpinnerService', 'auth', 'dojo', 'gmap', '$translate', 'currentUser', 'dojoUtils', cdDojoDetailCtrl]);

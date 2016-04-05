@@ -69,8 +69,8 @@
       {name: 'mentor', title: $translate.instant('Mentor')},
       {name: 'other', title: $translate.instant('Other')}
     ];
-
-    cdEventsService.getEvent(eventId, function (event) {
+    
+    cdEventsService.load(eventId, function (event) {
       event.listDownloadLink = function (status) {
         cdEventsService.exportGuestList(dojoId, event.id, status, function (response) {
           var downloadLink = angular.element('<a></a>');
