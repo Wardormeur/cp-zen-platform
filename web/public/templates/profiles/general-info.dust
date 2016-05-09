@@ -181,7 +181,7 @@
           </div>
         </div>
 
-        <legend ng-if="abilityToAddChildren()" class="legend-color-1-border">{@i18n key="Got a child? Add them below"/}</legend>
+        <legend ng-if="abilityToAddChildren()" ng-show="afterForm()" class="legend-color-1-border">{@i18n key="Got a child? Add them below"/}</legend>
         <div ng-show="afterForm()">
           <div class="margin-top-point-5-em" ng-if="abilityToAddChildren()">
             <span class="icon-group">Remove child</span>
