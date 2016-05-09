@@ -638,7 +638,7 @@ function cdUserProfileCtrl($scope, $rootScope, $state, $window, auth, cdUsersSer
     }
   }
 
-  $scope.abilityToAddChildren = function (){ //dont show add children section is user is youth or is taking direct registration flow (not from booking event ticket)
+  $scope.abilityToAddChildren = function (){ //dont show add children section if user is youth or is taking direct registration flow (not from booking event ticket)
     if($scope.profile && ($scope.profile.userTypes.indexOf('attendee-u13') > -1 ||
        $scope.profile.userTypes.indexOf('attendee-o13') > -1) || (!localStorage.eventId)){
       return false;
@@ -649,7 +649,6 @@ function cdUserProfileCtrl($scope, $rootScope, $state, $window, auth, cdUsersSer
   $scope.profile.children = [{name: null, alias: null, dateOfBirth:null, email: null, gender: null}];
 
   $scope.addChild = function () { //add another child object
-    if($scope.profile.children.length === 20) return alertService.showError($translate.instant('You can only have a maximum of twenty children. You can add more after registration.'));
     var child = {
       name: null,
       alias: null,
@@ -690,7 +689,7 @@ function cdUserProfileCtrl($scope, $rootScope, $state, $window, auth, cdUsersSer
     }
   }
 
-  if(profile.data.userType==='attendee-o13'){ //youth can't have children
+  if(profile.data.userType==='attendee-o13' || !localStorage.eventId){ //youth can't have children
     $scope.profile.children = null;
   }
 

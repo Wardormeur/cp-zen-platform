@@ -16,7 +16,7 @@
     }
 
     var userObject = {
-      userType : {name: accountName, title: accountTitle}, //hash key might be needed here
+      userType : {name: accountName, title: accountTitle},
       validate: 'false'
     };
 
