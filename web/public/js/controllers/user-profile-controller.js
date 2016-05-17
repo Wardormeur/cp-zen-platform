@@ -680,12 +680,12 @@ function cdUserProfileCtrl($scope, $rootScope, $state, $window, auth, cdUsersSer
   function goTo(){
     var eventId = localStorage.getItem('eventId');
     var dojoId = localStorage.getItem('dojoId');
-    var path = '/dashboard/dojo/'+dojoId+'/event/'+eventId;
+    var path = $state.href('dojo-event-details', {dojoId: dojoId, eventId: eventId});
     var urlSlug = localStorage.getItem('dojoUrlSlug');
     if(urlSlug.indexOf("/dojo")>=0){
       return path;
     } else {
-      return '/dashboard/profile/'+$stateParams.userId;
+      return $state.href('user-profile', {userId: $stateParams.userId});
     }
   }
 
