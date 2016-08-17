@@ -50,10 +50,17 @@ function listOfProjects(){
   }
 }
 
-function notes() {
+function bio() {
   return {
     restrict: 'E',
-    templateUrl: '/profiles/template/notes'
+    templateUrl: '/profiles/template/bio'
+  };
+}
+
+function listOfDojos() {
+  return {
+    restrict: 'E',
+    templateUrl: '/profiles/template/dojo-list'
   };
 }
 
@@ -66,6 +73,7 @@ angular
   .directive('childrenList', listOfChildren)
   .directive('generalInfo', generalInfo)
   .directive('parentsList', listOfParents)
-  .directive('notes', notes);
+  .directive('bio', bio)
+  .directive('dojoList', listOfDojos);
 
 }());

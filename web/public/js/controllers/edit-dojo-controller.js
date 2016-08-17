@@ -93,11 +93,7 @@ function cdEditDojoCtrl($scope, dojo, cdDojoService, alertService, gmap, auth,
       "<li><b>" + $translate.instant('A parent! (Very important). If you are 12 or under, your parent must stay with you during the session.') + "</b></li>" +
       "</ul></p>";
 
-    $scope.editorOptions = {
-      language: 'en',
-      uiColor: '#000000',
-      height: '200px'
-    };
+    $scope.editorOptions = utilsService.getCKEditorConfig({});
     if ($scope.dojo.notes === '') $scope.editorOptions.initContent = initContent;
 
     $scope.originalDojoListing = angular.copy($scope.dojo);
@@ -398,7 +394,10 @@ function cdEditDojoCtrl($scope, dojo, cdDojoService, alertService, gmap, auth,
   };
 
   $scope.upload = function (file) {
-    return cdDojoService.uploadAvatar($scope.dojo.id, file);
+    return cdDojoService.uploadAvatar($scope.dojo.id, file)
+    .then(function(){
+      return 'https://s3-eu-west-1.amazonaws.com/zen-dojo-images/' + $scope.dojo.id;
+    });
   }
 }
 
