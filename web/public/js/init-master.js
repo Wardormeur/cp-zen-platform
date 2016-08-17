@@ -360,7 +360,7 @@
         .state("manage-applications", {
           url: "/my-dojos/:dojoId/events/:eventId/applications",
           parent: 'dashboard',
-          templateUrl: '/dojos/template/events/manage-event-applications',
+          template: '<cd-event-applications></cd-event-applications>',
           controller: 'manage-event-applications-controller',
           params: {
             pageTitle: 'Applicants'

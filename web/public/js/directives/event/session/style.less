@@ -1,0 +1,28 @@
+.cd-event-session {
+  border-radius: 0;
+  // We can't set classes for those element which are being replaced, alas.
+  .panel-heading{
+    cursor: pointer;
+    a {
+      display: block;
+      text-decoration: none;
+    }
+  }
+  .cd-event-session-capacity {
+    font-size: @font-size-base;
+    font-weight: lighter;
+    @media (max-width: @screen-sm-max) {
+      display: block;
+      line-height: 2.5em;
+    }
+    @media (min-width: @screen-md-min) {
+      margin-left: 2em;
+    }
+  }
+  &__date {
+    display: inline-block;
+  }
+  &__place {
+    display: inline-block;
+  }
+}

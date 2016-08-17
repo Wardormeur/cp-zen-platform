@@ -1,0 +1,17 @@
+<span class="cd-event-session-capacity">
+  <span class="cd-event-session-capacity__number"> {{ cdESC.booked }} </span>
+  <div class="fa fa-stack cd-event-session-capacity__icon" title="{@i18n key="Attending"/}">
+    <i class="fa fa-square-o fa-stack-2x"></i>
+    <i class="fa fa-user fa-stack-1x"></i>
+  </div>
+  <span class="cd-event-session-capacity__number">{{ cdESC.capacity }}</span>
+  <div class="fa fa-stack cd-event-session-capacity__icon" title="{@i18n key="Session capacity"/}">
+    <i class="fa fa-square-o fa-stack-2x"></i>
+    <i class="fa fa-users fa-stack-1x"></i>
+  </div>
+  <span class="cd-event-session-capacity__number"> {{ cdESC.waiting }} </span>
+  <div class="fa fa-stack cd-event-session-capacity__icon" title="{@i18n key="Waitlist"/}">
+    <i class="fa fa-square-o fa-stack-2x"></i>
+    <i class="fa fa-question fa-stack-1x"></i>
+  </div>
+</span>

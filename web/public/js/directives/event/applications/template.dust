@@ -1,0 +1,34 @@
+<div class="row cd-event-applications">
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
+        <div cd-banner-background class="row">
+          <div class="row">
+            <cd-share-event share-event="event" class="pull-right cd-share-event"></cd-share-event>
+            <div class="col-xs-10 cd-banner-background__title">
+              <h2 ng-bind="::event.name" class="cd-event-applications__title"></h2>
+              <cd-event-session-capacity booked="eventStats.totalAttending" capacity="event.capacity" waiting="eventStats.totalWaitlist"></cd-event-session-capacity>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="h4 cd-event-applications__date" ng-bind="::event.formattedDates[0] + ::event.formattedDates[event.formattedDates.length]" ng-if="event.type==='recurring'"></div>
+            <div class="h4 cd-event-applications__date" ng-bind="::event.formattedDate" ng-if="event.type==='one-off'"></div>
+            <div class="cd-event-applications__place" ng-bind="::event.city.nameWithHierarchy"></div>
+          </div>
+        </div>
+        <cd-event-actions event="event"></cd-event-actions>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="row">
+        </div>
+        <div class="row">
+          <uib-accordion close-others="true" class="col-xs-12 cd-event-applications__accordion">
+            <cd-event-session ng-repeat="session in event.sessions"></cd-event-session>
+          </uib-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

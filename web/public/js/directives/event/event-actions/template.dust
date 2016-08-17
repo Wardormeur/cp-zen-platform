@@ -1,0 +1,25 @@
+<div uib-dropdown is-open="status.isopen" class="cd-event-actions hidden-xs hidden-sm">
+  <button id="cd-event-action" type="button" class="btn btn-secondary" uib-dropdown-toggle ng-disabled="disabled">
+    <i class="fa fa-gear"></i> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="cd-event-action">
+    <li role="menuitem">
+      <a ui-sref="edit-dojo-event({id: cdEA.event.id})" ng-if="cdEA.currentState !== 'edit-dojo-event'" alt="{@i18n key="Edit Event"/}">
+        <i class="fa fa-edit"></i>{@i18n key="Edit Event"/}
+      </a>
+    </li>
+    <li role="menuitem">
+      <a ng-click="event.guestListDownloadLink()" target="_blank">
+        <i class="fa fa-download" title="{@i18n key="Export Guest List"/}"></i>{@i18n key="Export Guest List"/}</a>
+    </li>
+    <li role="menuitem">
+      <a ng-click="event.waitingListDownloadLink()" target="_blank">
+        <i class="fa fa-download" title="{@i18n key="Export Waiting List"/}"></i>{@i18n key="Export Waiting List"/}</a>
+    </li>
+    <li role="menuitem">
+      <a ng-click="event.fullListDownloadLink()" target="_blank">
+        <i class="fa fa-download" title="{@i18n key="Export Full List"/}"></i>{@i18n key="Export Full List"/}</a>
+    </li>
+    <!-- TODO: notify ? -->
+  </ul>
+</div>

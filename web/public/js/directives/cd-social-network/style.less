@@ -6,7 +6,7 @@
   }
   .fa {
     color: white;
-    padding: 1em;
+    padding: 0.5em;
   }
   .fa-envelope, .fa-phone {
     color: black;
@@ -33,19 +33,11 @@
   }
 
   &__slider-btn {
-    display: block;
-    clear: both;
-    margin-bottom: 0.5em;
-    background-color: @cd-white;
+    .banner-top-right-actions();
     overflow: hidden;
-    .btn.btn-sm {
-      border-radius: 0;
-      padding: 0;
-    }
     &__data {
       transition: all 0.3s ease-in-out;
-      padding-right: 0.5em;
-      padding-left: 0.5em;
+      color: @cd-black;
       display: none;
       &--visible {
         display: inline-block;
