@@ -70,13 +70,7 @@
       .pipe(gulp.dest(relativePath('./web/public/dist/css/')))
   });
 
-  gulp.task('copy-bs-fonts', function () {
-    return gulp
-      .src('./web/public/components/bootstrap/fonts/*.*')
-      .pipe(gulp.dest('./web/public/dist/fonts'));
-  });
-
-  gulp.task('build', ['clean', 'jshint', 'build-less', 'build-dependencies', 'copy-bs-fonts'], function () {
+  gulp.task('build', ['clean', 'jshint', 'build-less', 'build-dependencies'], function () {
     return gulp.src(relativePath(app))
       .pipe(ngAnnotate())
       .pipe(concat('app.js'))
@@ -89,6 +83,9 @@
       configFile: __dirname + '/karma.conf.js',
       singleRun: true
     }, done).start();
+
+    gulp.on('stop', function () { process.exit(0); });
+    gulp.on('err', function () { process.exit(1); });
   });
 
   gulp.task('watch-less', ['build-less'], function(){
@@ -97,6 +94,5 @@
 
   gulp.task('default', ['test']);
 
-  gulp.task('dev', ['watch-less', 'copy-bs-fonts']);
-
+  gulp.task('dev', ['watch-less']);
 })();
