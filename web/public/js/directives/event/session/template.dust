@@ -27,49 +27,10 @@
   <div ng-if="applications.length === 0">
     <span class="col-md-12 applications-banner">{@i18n key="There are no outstanding applications for this Session"/}</span>
   </div>
-  <div class="table-responsive" ng-if="applications.length > 0">
+  <div ng-if="applications.length > 0">
+    <cd-event-application-item applications="applications"></cd-event-application-item>
     <span spinner-key="session-applications-spinner" us-spinner="{radius:30, width:8, length: 16}"></span>
-    <div ng-repeat="application in applications">
-      <td><a ui-sref="user-profile({userId: application.userId})">{{ application.name }}</a></td>
-      <td> {{ application.ticketName }}</td>
-      <td> {{ application.ticketType }}</td>
-      <td> {{ application.dateApplied }}</td>
-      <td><span ng-if="application.age">{{ application.age }}</span></td>
-      <td><ul><li ng-repeat="parent in application.parents"><a ui-sref="user-profile({userId: parent.id})">{{ parent.name }}</a></li></ul></td>
-      <td><span ng-if="application.notes">{{ application.notes }}</span></td>
-      <td>
-        <div class="checkbox">
-          <input type="checkbox" name="applicationApproved" id="applicationApprovedCheckbox-{{ application.id }}" ng-disabled="session.status === 'cancelled'" ng-checked="userIsApproved(application)" ng-click="updateApplication(application, 'status')">
-          <label for="applicationApprovedCheckbox-{{ application.id }}"></label>
-        </div>
-      </td>
-      <td>
-        <div ng-dropdown-multiselect-disabled="application.status !== 'approved'" ng-if="event.type === 'recurring'" ng-dropdown-multiselect="" options="application.applicationDates" extra-settings="attendanceDropdownSettings" events="attendanceDropdownEvents" selected-model="application.attendanceModel"></div>
-        <div ng-if="event.type === 'one-off'" class="checkbox">
-          <input ng-disabled="application.status !== 'approved'" type="checkbox" id="checkInCheckbox-{{ application.id }}" ng-checked="userIsCheckedIn(application)" ng-click="updateApplication(application, 'attendance')">
-          <label for="checkInCheckbox-{{ application.id }}"></label>
-        </div>
-      </td>
-      <td>
-        <span ng-hide="((event.type === 'recurring') && (application.attendanceModel.length > 0)) || ((event.type === 'one-off') && (application.attendance.length > 0))">
-          &nbsp;
-          <button
-            type="button" class="btn btn-danger"
-            ng-bootbox-confirm="{@i18n key="Are you sure you want to delete this application?"/}"
-            ng-bootbox-confirm-action="updateApplication(application, 'deleted')">
-            {@i18n key="Delete"/}
-          </button>
-        </span>
-        <span ng-show="((event.type === 'recurring') && (application.attendanceModel.length > 0)) || ((event.type === 'one-off') && (application.attendance.length > 0))" tooltip-enable="((event.type == 'recurring') && (application.attendanceModel.length != 0)) || ((event.type == 'one-off') && (application.attendance.length != 0))"
-          tooltip-trigger="mouseenter" tooltip-placement="top"
-          uib-tooltip-html="strings.deleteUserCheckedIn">
-          &nbsp;
-          <button
-            type="button" class="btn btn-danger" disabled="disabled">
-            {@i18n key="Delete"/}
-          </button>
-        </span>
-    </div>
+
     <div class="row center-children">
       <span class="row col-lg-7 centered-child">
         <uib-pagination total-items="pagination.totalItems" ng-change="pageChanged(session.id)" items-per-page="pagination.itemsPerPage" ng-model="pagination.pageNo"

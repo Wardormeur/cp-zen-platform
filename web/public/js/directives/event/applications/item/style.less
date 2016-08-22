@@ -1,0 +1,42 @@
+.cd-event-applications {
+
+  .cd-banner-background {
+    height: 100%;
+  }
+
+  .cd-banner-background__inner {
+    .cd-event-session-capacity {
+      color: @cd-very-light-gray;
+      @media (min-width: @screen-sm-max) {
+        margin-left: 3em;
+        display: inline-block;
+      }
+      @media (max-width: @screen-sm-max) {
+        display: block;
+        margin-left: 15px;
+      }
+    }
+    .cd-event-applications__title {
+      display: inline-block;
+    }
+    cd-share-event {
+      margin-top: 1em;
+      .banner-top-right-actions();
+      color: @cd-black;
+      .__share-btn {
+        .banner-top-right-actions-btn();
+      }
+      .__share-list {
+        position: absolute;
+        right: 0px;
+        top: 60px;
+        z-index: 100;
+        background-color: @cd-white;
+      }
+    }
+  }
+
+  &__accordion {
+    margin-top: 2em;
+  }
+}

@@ -1,0 +1,46 @@
+<div>
+  <cd-picture-grid items="cdEAI.items" click="cdEAI.expand"></cd-picture-grid>
+  <div ng-show="cdEAI.expanded" class="panel">
+    <div class="panel-heading">
+      <a ui-sref="user-profile({userId: cdEAI.ticketSelected.userId})">{{ cdEAI.ticketSelected.name }}</a>
+      <button class="btn btn-xs pull-right" ng-click="cdEAI.toggleVisibility()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="panel-body">
+      <span class="badge">{{ cdEAI.ticketSelected.ticketName }}</span>
+      {{ cdEAI.cdEAI.ticketSelected.dateApplied }}
+      {{ cdEAI.cdEAI.ticketSelected.ticketType }}
+      <span ng-if="cdEAI.ticketSelected.age">{{ cdEAI.ticketSelected.age }}</span>
+      <ul><li ng-repeat="parent in cdEAI.ticketSelected.parents"><a ui-sref="user-profile({userId: parent.id})">{{ parent.name }}</a></li></ul>
+      <span ng-if="cdEAI.ticketSelected.notes">{{ cdEAI.ticketSelected.notes }}</span>
+      <div class="checkbox">
+        <input type="checkbox" name="applicationApprovedCheckbox" id="applicationApprovedCheckbox" ng-disabled="session.status === 'cancelled'" ng-checked="userIsApproved(cdEAI.ticketSelected)" ng-click="updateApplication(cdEAI.ticketSelected, 'status')">
+        <label for="applicationCheckboxCheckbox"></label>
+      </div>
+
+      <div ng-dropdown-multiselect-disabled="cdEAI.ticketSelected.status !== 'approved'" ng-if="event.type === 'recurring'" ng-dropdown-multiselect="" options="cdEAI.ticketSelected.applicationDates" extra-settings="attendanceDropdownSettings" events="attendanceDropdownEvents" selected-model="cdEAI.ticketSelected.attendanceModel"></div>
+        <div ng-if="event.type === 'one-off'" class="checkbox">
+          <input ng-disabled="cdEAI.ticketSelected.status !== 'approved'" type="checkbox" id="checkInCheckbox" ng-checked="userIsCheckedIn(cdEAI.ticketSelected)" ng-click="updateApplication(cdEAI.ticketSelected, 'attendance')">
+          <label for="checkInCheckbox"></label>
+        </div>
+
+      <span ng-hide="((event.type === 'recurring') && (cdEAI.ticketSelected.attendanceModel.length > 0)) || ((event.type === 'one-off') && (cdEAI.ticketSelected.attendance.length > 0))">
+          &nbsp;
+          <button
+            type="button" class="btn btn-danger"
+            ng-bootbox-confirm="{@i18n key="Are you sure you want to delete this application?"/}"
+            ng-bootbox-confirm-action="updateApplication(cdEAI.ticketSelected, 'deleted')">
+            {@i18n key="Delete"/}
+          </button>
+        </span>
+        <span ng-show="((event.type === 'recurring') && (cdEAI.ticketSelected.attendanceModel.length > 0)) || ((event.type === 'one-off') && (cdEAI.ticketSelected.attendance.length > 0))" tooltip-enable="((event.type == 'recurring') && (cdEAI.ticketSelected.attendanceModel.length != 0)) || ((event.type == 'one-off') && (cdEAI.ticketSelected.attendance.length != 0))"
+          tooltip-trigger="mouseenter" tooltip-placement="top"
+          uib-tooltip-html="strings.deleteUserCheckedIn">
+          &nbsp;
+          <button
+            type="button" class="btn btn-danger" disabled="disabled">
+            {@i18n key="Delete"/}
+          </button>
+        </span>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,8 @@
 
   angular.module('cpZenPlatform').component('cdPictureGrid', {
     bindings: {
-      items: '<'
+      items: '<',
+      click: '='
     },
     templateUrl: '/directives/tpl/cd-picture-grid'
   });

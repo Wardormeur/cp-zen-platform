@@ -1,6 +1,10 @@
 <div class="cd-picture-grid">
-    <a class="cd-picture-grid__item" ng-repeat="item in $ctrl.items" ng-href="{{ item.href }}">
+    <a class="cd-picture-grid__item" ng-repeat="item in $ctrl.items" ng-href="{{ item.href }}" ng-if="item.href">
         <div class="cd-picture-grid__picture" style="background-image: url({{ item.picture }});"></div>
         <p class="cd-picture-grid__caption">{{ item.caption }}</p>
     </a>
+    <div class="cd-picture-grid__item" ng-repeat="item in $ctrl.items" ng-click="$ctrl.click($event, item)" ng-if="$ctrl.click">
+        <div class="cd-picture-grid__picture" style="background-image: url({{ item.picture }});"></div>
+        <p class="cd-picture-grid__caption">{{ item.caption }}</p>
+    </div>
 </div>
