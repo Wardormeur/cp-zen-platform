@@ -305,6 +305,26 @@ server.register(polls, function (err) {
   checkHapiPluginError('polls')(err);
 });
 
+// TODO:  move this shit
+var model = {
+  // We support generators.
+  getAccessToken: function (done) {
+    done(null, { accessToken: 'aaaa', user : {name: 'bob'}});
+  },
+
+  getAuthorizationCode: function (done) {
+    return done(null, {grants: { clientId: '', clientSecret: ''}});
+  },
+
+  getClient: function(done) {
+    done(null, 'works!');
+  },
+
+  getUser: function() {
+    done(null, 'works!');
+  },
+};
+
 // Locale related server method
 function formatLocaleCode (code) {
   return code.slice(0, 3) + code.charAt(3).toUpperCase() + code.charAt(4).toUpperCase();

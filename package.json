@@ -56,6 +56,7 @@
     "lodash": "3.7.0",
     "lodash-deep": "1.6.0",
     "newrelic": "1.19.2",
+    "oauth2-server": "git+https://github.com/oauthjs/node-oauth2-server.git",
     "po2json": "0.4.1",
     "requireindex": "1.1.0",
     "scooter": "2.0.1",
