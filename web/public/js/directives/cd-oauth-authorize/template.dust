@@ -12,7 +12,7 @@
       <img src="img/coderdojo-roundel-light-bg.svg" />
     </div>
   </div>
-  <div class="cd-oauth-authorize__consent">
+  <form class="cd-oauth-authorize__consent" name="cdOA.form" action="/api/3.0/oauth/authorize" method="post">
     <div class="cd-oauth-authorize__login-authorize">
       <p>
         Coolest Projects will be able to access:
@@ -36,8 +36,12 @@
           <li>Daniel Jr.</li>
         </ul>
       </p>
-      <button class="btn btn-primary">Authorize</button>
-      <button class="btn btn-secondary">Cancel</button>
+      <input type="hidden" name="client_id" value="{{ cdOA.data.client_id }}"/>
+      <input type="hidden" name="redirect_uri" value="{{ cdOA.data.redirect_uri }}"/>
+      <input type="hidden" name="response_type" value="{{ cdOA.data.response_type }}"/>
+      <input type="hidden" name="scope" value="{{ cdOA.data.scope }}"/>
+      <button class="btn btn-primary" type="submit">Authorize</button>
+      <button class="btn btn-secondary" ng-click="cdOA.cancel()">Cancel</button>
     </div>
     <div class="cd-oauth-authorize__application-info">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -48,5 +52,5 @@
       <p><a href="http://www.coolestprojects.org" target="_blank">Privacy Policy</a></p>
       <p><a href="http://www.coolestprojects.org" target="_blank">Terms &amp; Conditions</a></p>
     </div>
-  </div>
+  </form>
 </div>

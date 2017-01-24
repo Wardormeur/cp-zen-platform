@@ -257,10 +257,6 @@
             pageTitle: 'Reset Password'
           }
         })
-        .state("authorize", {
-          url: '/authorize',
-          template: '<cd-oauth-authorize></cd-oauth-authorize>'
-        })
         .state("register-account", {
           url: "/register?referer",
           template: '<cd-register></cd-register>',
@@ -775,6 +771,13 @@
           controller: 'user-profile-controller',
           params: {
             pageTitle: 'Profile',
+          }
+        })
+        .state('accept-oauth-app', {
+          url:'/oauth/authorize?response_type&redirect_uri&scope&client_id',
+          template: '<cd-oauth-authorize></cd-oauth-authorize>',
+          params: {
+            pageTitle: 'Share details to app'
           }
         })
         .state('badges-dashboard', {

@@ -73,6 +73,7 @@ function startWorker() {
 function start() {
   if (cluster.isMaster) {
     var numCPUs = require('os').cpus().length;
+    var numCPUs = 1;
     // Fork workers.
     for (var i = 0; i < numCPUs; i++) {
       var worker = cluster.fork();

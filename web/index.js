@@ -25,6 +25,7 @@ var util = require('util');
 var fs = require('fs');
 var os = require('os');
 var debug = require('debug')('cp-zen-platform:index');
+var async = require('async');
 
 require('./lib/dust-i18n.js');
 require('./lib/dust-loadjs.js');
@@ -41,6 +42,8 @@ hasher.update(os.hostname());
 var hostUid = hasher.digest('hex') + '-' + uid;
 server.method('getUid', function() { return hostUid });
 
+server.app.host = host;
+server.app.protocol = protocol;
 
 function checkHapiPluginError (name) {
   return function (error) {
@@ -121,7 +124,7 @@ server.ext('onPreResponse', function (request, reply) {
     request.log(['error', '400'], {status: status, host: server.methods.getUid(), payload: request.payload, params: request.params, url: request.url, user: request.user, error: _.has(request.response, 'data.details')? request.response.data.details: request.response.output}, Date.now());
   }
   // if it's an api call, continue as normal..
-  if (request.url.path.indexOf('/api/2.0') === 0) {
+  if (request.url.path.indexOf('/api/') === 0) {
     return reply.continue();
   }
 
@@ -305,25 +308,36 @@ server.register(polls, function (err) {
   checkHapiPluginError('polls')(err);
 });
 
-// TODO:  move this shit
-var model = {
-  // We support generators.
-  getAccessToken: function (done) {
-    done(null, { accessToken: 'aaaa', user : {name: 'bob'}});
-  },
+// New archi for 3.0
+// Don't ever dare redoing ^this
 
-  getAuthorizationCode: function (done) {
-    return done(null, {grants: { clientId: '', clientSecret: ''}});
-  },
+var libBasePath = './lib/registrations/';
+var routesBasePath = '../lib/3.0/';
+var registrations = require(libBasePath);
+var api3_0 = require(routesBasePath);
+var basePaths = [libBasePath, routesBasePath];
+var i = 0;
+// TODO: eachOfSeries not available, thanks outdated libs
+async.eachSeries([registrations, api3_0], function (files, sCb) {
+  var path = basePaths[i];
+  files.forEach(function (libName) {
+    console.log('registering', path, libName);
+    var lib = require(path + libName);
+    server.register(lib, function (err) {
+      checkHapiPluginError(libName)(err);
+    });
+  });
+  i ++;
+  sCb();
+})
 
-  getClient: function(done) {
-    done(null, 'works!');
-  },
 
-  getUser: function() {
-    done(null, 'works!');
-  },
-};
+// api3_0.forEach(function (libName) {
+//   var lib = require(routesBasePath + libName);
+//   server.register(lib, function (err) {
+//     checkHapiPluginError(libName)(err);
+//   });
+// });
 
 // Locale related server method
 function formatLocaleCode (code) {

@@ -1,3 +1,4 @@
+'use strict';
 var _ = require('lodash');
 var Boom = require('boom');
 
@@ -9,12 +10,12 @@ module.exports = function (server) {
 
     if (status >= 400) {
       request.log(['error', status < 500 ? '4xx' : '5xx'], {status: status, host: server.methods.getUid(), payload: request.payload, params: request.params, url: request.url, user: request.user, error: _.has(response, 'data.details')? response.data.details: response.output}, Date.now());
-      if (response.isBoom) {
+      if (response.isBoom || !_.isEmpty(request.plugins)) {
         return reply.continue();
       } else {
         switch (status) {
           case 400:
-            var msg = _.get(reponse, 'output.payload.message', undefined);
+            var msg = _.get(response, 'output.payload.message', undefined);
             return reply(Boom.badRequest(msg));
             break;
           case 401:
