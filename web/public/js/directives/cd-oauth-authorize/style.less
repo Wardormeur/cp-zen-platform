@@ -1,0 +1,38 @@
+.cd-oauth-authorize {
+  &__images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__consumer-image, &__provider-image {
+    max-width: 128px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__exchange-icon {
+    margin: 0 32px;
+  }
+
+  &__consent {
+    display: flex;
+    max-width: 700px;
+    margin: 32px auto;
+  }
+
+  &__login-authorize {
+    flex: 3;
+    padding: 16px;
+    border-right: 1px solid @cd-light-gray;
+  }
+
+  &__application-info {
+    flex: 2;
+    padding: 16px;
+    color: @cd-gray;
+  }
+}

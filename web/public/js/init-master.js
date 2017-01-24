@@ -257,6 +257,10 @@
             pageTitle: 'Reset Password'
           }
         })
+        .state("authorize", {
+          url: '/authorize',
+          template: '<cd-oauth-authorize></cd-oauth-authorize>'
+        })
         .state("register-account", {
           url: "/register?referer",
           template: '<cd-register></cd-register>',

@@ -1,0 +1,52 @@
+<div class="cd-oauth-authorize">
+  <h1 class="text-center">Authorize Coolest Projects</h1>
+  <p class="text-center lead">Coolest Projects has requested to use your CoderDojo account.</p>
+  <div class="cd-oauth-authorize__images">
+    <div class="cd-oauth-authorize__consumer-image">
+      <img src="http://coolestprojects.org/wp-content/uploads/2015/09/CoolestProjectAwardsLogo_small-300x200.png" />
+    </div>
+    <div class="cd-oauth-authorize__exchange-icon">
+      <i class="fa fa-4x fa-exchange"></i>
+    </div>
+    <div class="cd-oauth-authorize__provider-image">
+      <img src="img/coderdojo-roundel-light-bg.svg" />
+    </div>
+  </div>
+  <div class="cd-oauth-authorize__consent">
+    <div class="cd-oauth-authorize__login-authorize">
+      <p>
+        Coolest Projects will be able to access:
+        <ul>
+          <li>
+            Your profile
+            <ul>
+              <li>Name</li>
+              <li>Email</li>
+              <li>Country</li>
+              <li>Town/city</li>
+            </ul>
+          </li>
+          <li>Your Dojo memberships</li>
+        </ul>
+      </p>
+      <p>
+        Coolest Projects will also have access to the same information about your children:
+        <ul>
+          <li>Daniel II</li>
+          <li>Daniel Jr.</li>
+        </ul>
+      </p>
+      <button class="btn btn-primary">Authorize</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+    <div class="cd-oauth-authorize__application-info">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.</p>
+      <p><a href="http://www.coolestprojects.org" target="_blank">www.coolestprojects.org</a></p>
+      <p><a href="http://www.coolestprojects.org" target="_blank">Privacy Policy</a></p>
+      <p><a href="http://www.coolestprojects.org" target="_blank">Terms &amp; Conditions</a></p>
+    </div>
+  </div>
+</div>
