@@ -6,6 +6,7 @@ var users = [
 
 
 exports.find = function(id, done) {
+seneca.act({role: 'cd_profiles', cmd: 'load', id: id})
   for (var i = 0, len = users.length; i < len; i++) {
     var user = users[i];
     if (user.id === id) {
@@ -16,11 +17,12 @@ exports.find = function(id, done) {
 };
 
 exports.findByUsername = function(username, done) {
-  for (var i = 0, len = users.length; i < len; i++) {
-    var user = users[i];
-    if (user.username === username) {
-      return user;
-    }
-  }
+  seneca.act({role: 'cd_profiles', cmd: 'search', query: {'name': username}})
+  // for (var i = 0, len = users.length; i < len; i++) {
+  //   var user = users[i];
+  //   if (user.username === username) {
+  //     return user;
+  //   }
+  // }
   return null;
 };
