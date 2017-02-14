@@ -1,16 +1,16 @@
 'use strict';
-var bearer = require('hapi-auth-bearer-token');
+// var bearer = require('hapi-auth-bearer-token');
 var oauth2 = require('./../../../../../../hapi-oauth-server/plugin');
-var Model = new (require('../../config/oauth2-model'))();
 
 module.exports.register = function (server) {
+  var Model = new (require('../../models/oauth2'))(server.seneca);
   //  continueMiddleware: true,
   server.register({register: oauth2, options:
-    {model: Model, allowEmptyState: true}},
-   function (err) {
-    console.log(err);
-  });
-}
+      {model: Model, allowEmptyState: true}},
+    function (err) {
+      console.log(err);
+    });
+};
 
 exports.register.attributes = {
   name: 'api-3.0_oauth-lib'

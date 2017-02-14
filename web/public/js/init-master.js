@@ -693,14 +693,14 @@
           templateUrl: '/profiles/template/accept-child-invite'
         })
         .state('edit-user-profile', {
-          url:'/profile/:userId/edit?referer&eventId',
+          url: '/profile/:userId/edit?referer&eventId',
           parent: 'dashboard',
           controller: 'user-profile-controller',
           resolve: {
             profile: resolves.profile,
             loggedInUser: resolves.loggedInUser,
             hiddenFields: resolves.hiddenFields,
-            agreement: resolves.agreement ,
+            agreement: resolves.agreement,
             championsForUser: resolves.championsForUser,
             parentsForUser: resolves.parentsForUser,
             badgeCategories: resolves.badgeCategories,
@@ -722,7 +722,7 @@
             profile: resolves.ownProfile,
             loggedInUser: resolves.loggedInUser,
             hiddenFields: resolves.hiddenFields,
-            agreement: resolves.agreement ,
+            agreement: resolves.agreement,
             championsForUser: resolves.championsForLoggedInUser,
             parentsForUser: resolves.parentsForLoggedInUser,
             badgeCategories: resolves.badgeCategories,
@@ -733,6 +733,20 @@
           controller: 'user-profile-controller',
           params: {
             pageTitle: 'Profile'
+          }
+        })
+        .state("manage-apps", {
+          url: '/profile/apps',
+          parent: 'dashboard',
+          template: '<cd-oauth-manage-apps class="row"></cd-oauth-manage-apps>',
+          resolve: {
+            loggedInUser: resolves.loggedInUser
+          },
+          controller: function ($scope, profile, loggedInUser, initUserTypes) {
+            $scope.loggedInUser = loggedInUser;
+          },
+          params: {
+            pageTitle: 'Manage your connected apps'
           }
         })
         .state("connect-lms", {

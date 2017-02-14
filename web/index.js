@@ -308,37 +308,6 @@ server.register(polls, function (err) {
   checkHapiPluginError('polls')(err);
 });
 
-// New archi for 3.0
-// Don't ever dare redoing ^this
-
-var libBasePath = './lib/registrations/';
-var routesBasePath = '../lib/3.0/';
-var registrations = require(libBasePath);
-var api3_0 = require(routesBasePath);
-var basePaths = [libBasePath, routesBasePath];
-var i = 0;
-// TODO: eachOfSeries not available, thanks outdated libs
-async.eachSeries([registrations, api3_0], function (files, sCb) {
-  var path = basePaths[i];
-  files.forEach(function (libName) {
-    console.log('registering', path, libName);
-    var lib = require(path + libName);
-    server.register(lib, function (err) {
-      checkHapiPluginError(libName)(err);
-    });
-  });
-  i ++;
-  sCb();
-})
-
-
-// api3_0.forEach(function (libName) {
-//   var lib = require(routesBasePath + libName);
-//   server.register(lib, function (err) {
-//     checkHapiPluginError(libName)(err);
-//   });
-// });
-
 // Locale related server method
 function formatLocaleCode (code) {
   return code.slice(0, 3) + code.charAt(3).toUpperCase() + code.charAt(4).toUpperCase();
@@ -396,14 +365,38 @@ server.register({ register: chairo, options: options }, function (err) {
 
      var seneca = server.seneca;
 
-     _.each(options.client, function(opts) {
+     _.each(options.client, function (opts) {
        seneca.client(opts);
      });
 
 
-     server.start(function() {
+     server.start(function () {
        console.log('[%s] Listening on http://localhost:%d', env, port);
      });
    });
 });
+
+// New archi for 3.0
+// Don't ever dare redoing ^this
+
+var libBasePath = './lib/registrations/';
+var routesBasePath = '../lib/3.0/';
+var registrations = require(libBasePath);
+var api3_0 = require(routesBasePath);
+var basePaths = [libBasePath, routesBasePath];
+var i = 0;
+// TODO: eachOfSeries not available, thanks outdated libs
+async.eachSeries([registrations, api3_0], function (files, sCb) {
+  var path = basePaths[i];
+  files.forEach(function (libName) {
+    var lib = require(path + libName);
+    server.register(lib, function (err) {
+      checkHapiPluginError(libName)(err);
+    });
+  });
+  i++;
+  sCb();
+});
+
+
 };

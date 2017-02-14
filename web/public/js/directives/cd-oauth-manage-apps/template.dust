@@ -1,0 +1,9 @@
+<div class="cd-oauth-authorize">
+  <h1 class="text-center">Applications</h1>
+  <div ng-repeat="(key, app) in cdOMP.apps">
+    <h3>{{ app.name }}</h3>
+    <div ng-repeat="(key, field) in app.fields"> {{ field }} </div>
+    <img src="{{ app.iconUrl }}"></img>
+    <button ng-click="cdOMP.revoke({{ app.id }})">{i18n="Revoke App"/}</button>
+  </div>
+</div>
