@@ -319,7 +319,7 @@ exports.register = function (server, eOptions, next) {
   }, {
     method: 'POST',
     path: `${options.basePath}/dojos/by-country`,
-    handler: handlers.actHandler('dojos_by_country'),
+    handler: handlers.actHandler('by_country', null, null, { ctrl: 'dojo' }),
     config: {
       description: 'ByCountry',
       notes: 'ByCountry',
