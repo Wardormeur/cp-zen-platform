@@ -173,7 +173,7 @@ var ctrller = function ($state, alertService, auth, tableUtils, cdDojoService,
           if (ctrl.sort.verifiedAt) sort.verifiedAt = ctrl.sort.verifiedAt;
           if (ctrl.sort.createdAt) sort.created = ctrl.sort.createdAt;
           if (ctrl.sort.country) sort.country = ctrl.sort.country;
-          return _.isEmpty(sort) ? {ctid: -1} : sort;
+          return _.isEmpty(sort) ? {createdAt: -1} : sort;
         })();
         query = _.omitBy(query, function (value) { return value === '' || _.isNull(value) || _.isUndefined(value) });
         return cdDojoService.search(query)

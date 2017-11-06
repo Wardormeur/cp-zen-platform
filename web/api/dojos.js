@@ -31,7 +31,7 @@ exports.register = function (server, eOptions, next) {
   }, {
     method: 'POST',
     path: `${options.basePath}/dojos/search-bounding-box`,
-    handler: handlers.actHandler('search_bounding_box'),
+    handler: handlers.actHandler('search_bounding_box', null, null, { ctrl: 'dojo' }),
     config: {
       description: 'Search dojos',
       notes: 'Search dojos located in a bounding box area',
@@ -115,7 +115,6 @@ exports.register = function (server, eOptions, next) {
             email: Joi.number().valid(-1).valid(1).optional(),
             verifiedAt: Joi.number().valid(-1).valid(1).optional(),
             updatedAt: Joi.number().valid(-1).valid(1).optional(),
-            ctid: Joi.number().valid(-1).valid(1).optional(),
           }),
         } }),
       },
@@ -453,7 +452,7 @@ exports.register = function (server, eOptions, next) {
   }, {
     method: 'POST',
     path: `${options.basePath}/dojos/stats`,
-    handler: handlers.actHandlerNeedsUser('get_stats'),
+    handler: handlers.actHandlerNeedsUser('by_continent', null, null, {ctrl: 'stats'}),
     config: {
       auth: auth.apiUser,
       description: 'get stats',
@@ -755,7 +754,7 @@ exports.register = function (server, eOptions, next) {
   }, {
     method: 'POST',
     path: `${options.basePath}/dojos/search-nearest-dojos`,
-    handler: handlers.actHandler('search_nearest_dojos'),
+    handler: handlers.actHandler('search_nearest_dojos', null, null, { ctrl: 'dojo' }),
     config: {
       description: 'search nearest dojo',
       notes: 'search nearest dojo',
